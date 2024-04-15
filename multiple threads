@@ -1,0 +1,22 @@
+//multiple threads
+import java.util.Scanner; 
+class table extends Thread 
+{ public void run() 
+{ 
+Scanner s=new Scanner(System.in); 
+System.out.println("Enter the multiplicand : "); int m=s.nextInt(); 
+System.out.println("The multiplication table for "+m+" is : "); for(int i=1;i<=10;i++) 
+System.out.printf("%d * %d = %d\n",m,i,m*i); } } 
+public class mult_tables 
+{ public static void main(String[] args) 
+{ table t1=new table(); table t2=new table(); try 
+{ 
+System.out.println("First Table : "); t1.start(); t1.join(); 
+System.out.println("Second Table : "); t2.start(); t2.join(); 
+} 
+catch (Exception e) 
+{ 
+System.out.println(e); 
+} 
+} 
+} 
