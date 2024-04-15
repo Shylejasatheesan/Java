@@ -1,0 +1,21 @@
+//File stream
+import java.io.*; 
+import java.util.Scanner; public class fread_write 
+{ public static void main(String[] args) 
+{ 
+FileOutputStream fout; 
+FileInputStream fin; 
+Scanner s=new Scanner(System.in); try 
+{ 
+System.out.println("Enter the name of the file : "); String fname=s.nextLine(); fout=new FileOutputStream(fname); 
+System.out.println("Enter the file contents : "); String cont=s.nextLine(); fout.write(cont.getBytes()); fout.close(); 
+fin=new FileInputStream(fname); 
+System.out.println("The file contents : "); byte[] out=new byte[100]; fin.read(out); 
+String data=new String(out); System.out.println(data); fin.close(); 
+} 
+catch(IOException e) 
+{ 
+System.out.println(e); 
+} 
+s.close(); 
+} } 
