@@ -1,0 +1,57 @@
+//bank database
+import java.util.Scanner; 
+class account 
+{ int balance; account(int balance) 
+{ this.balance=balance; 
+} 
+public int getBalance() 
+{ return balance; 
+} synchronized public void update(int amt) 
+{ this.balance+=amt; 
+} } class withdraw extends Thread 
+{ account a; withdraw(account a) 
+{ this.a=a; 
+} 
+public void run() 
+{ 
+Scanner s=new Scanner(System.in); 
+System.out.println("Enter withdraw amount : "); int amt=s.nextInt(); s.nextLine(); if(amt<=a.getBalance()) 
+{ 
+a.update(-amt); 
+System.out.println("Current balance : "+a.getBalance()); 
+} else 
+System.out.println("Insufficient funds!"); } } class deposit extends Thread 
+{ account a; deposit(account a) 
+{ this.a=a; 
+} 
+public void run() 
+{ 
+Scanner s=new Scanner(System.in); 
+System.out.println("Enter deposit amount : "); int amt=s.nextInt(); s.nextLine(); 
+a.update(amt); 
+System.out.println("Current balance : "+a.getBalance()); } } 
+public class bank 
+{ public static void main(String[] args) 
+{ 
+Scanner s=new Scanner(System.in); 
+System.out.println("Enter the account balance : "); int balance=s.nextInt(); account a=new account(balance); char c; do 
+{ 
+System.out.println("Bank"); 
+System.out.println("1. Withdraw"); 
+System.out.println("2. Deposit"); System.out.println("Entre your choice : "); int ch=s.nextInt(); 
+s.nextLine(); try 
+{ switch(ch) 
+{ case 1: withdraw w=new withdraw(a); 
+w.start(); 
+w.join(); break; 
+case 2: deposit d=new deposit(a); 
+d.start(); 
+d.join(); break; 
+default:System.out.println("Invalid command!"); } } catch(Exception e) 
+{ 
+System.out.println(e); 
+} 
+System.out.println("Would you like to continue?(y/n) : "); c=s.nextLine().charAt(0); }while(c=='y'||c=='Y'); s.close(); 
+} 
+} 
+ 
