@@ -1,0 +1,19 @@
+//Palindrome
+import java.util.Scanner; 
+public class stringPalindrome 
+{ public static void main(String args[]) 
+{ 
+Scanner s=new Scanner(System.in); 
+System.out.println("Enter a string :"); 
+String str=s.nextLine(); 
+int l=str.length(); 
+String rev=""; 
+for(int i=l-1;i>=0;i--) 
+rev+=str.charAt(i); 
+if(str.equals(rev)) 
+System.out.println(str+" is a palindrome"); 
+else 
+System.out.println(str+" is not a palindrome"); 
+s.close(); 
+} 
+} 
