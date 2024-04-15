@@ -1,0 +1,67 @@
+//Matrix
+import java.util.Scanner; 
+public class matrix 
+{ static void getmat(int[][] mat,int r,int c) 
+{ 
+Scanner s=new Scanner(System.in);
+int i,j;
+for(i=0;i<r;i++) 
+{ for(j=0;j<c;j++) mat[i][j]=s.nextInt(); 
+} } 
+static void multiplication(int [][]mat1,int[][] mat2,int mat3[][],int r1,i 
+nt c1,int r2,int c2) 
+{ int i,j,k; for(i=0;i<r1;i++) 
+{ for(j=0;j<c2;j++) 
+{ int sum=0; for(k=0;k<c1;k++) sum+=(mat1[i][k]*mat2[k][j]); 
+mat3[i][j]=sum; 
+} 
+} } static void addition(int[][] A,int[][] B,int[][] C,int r,int c) 
+{ for(int i=0;i<r;i++) 
+{ for(int j=0;j<c;j++) 
+C[i][j]=A[i][j]+B[i][j]; 
+} } static void printmat(int[][] mat,int r,int c) 
+{ int i,j; for(i=0;i<r;i++) 
+{ for(j=0;j<c;j++) 
+System.out.print(mat[i][j]+" "); 
+System.out.println(); 
+} } public static void main(String args[]) 
+{ 
+Scanner s=new Scanner(System.in); 
+int r1,c1,r2,c2,result; 
+System.out.println("Enter the no. of rows of matrix 1 :"); 
+r1=s.nextInt(); 
+System.out.println("Enter the no. of columns in matrix 1:"); 
+c1=s.nextInt(); 
+System.out.println("Enter the no. of rows of matrix 2 :");
+r2=s.nextInt(); 
+System.out.println("Enter the no. of columns in matrix 2 :"); 
+c2=s.nextInt(); int A[][]=new int[r1][c1]; int B[][]=new int[r2][c2]; 
+System.out.println("Enter the matrix 1 :"); 
+getmat(A,r1,c1); 
+System.out.println("Enter the matrix 2 :");
+getmat(B,r2,c2); 
+System.out.println("Enter choice : 1. Add 2. Multiply");
+int ch=s.nextInt(); if(ch==1) 
+{ if(r1==r2 && c1==c2) 
+{ 
+ 	int C[][]=new int[r1][c1];  	
+addition(A,B,C,r1,c1); 
+ 
+ 	System.out.println("Result mat: ");  	
+printmat(C,r1,c1); }  else  
+ 	System.out.println("Matrix mismatch"); 
+} 
+else 
+{ if(c1==r2) 
+{  	int[][] D=new int[r1][c2];  	
+multiplication(A,B,D,r1,c1,r2,c2); 
+ 
+ 	System.out.println("Result mat : ");  	
+printmat(D,r1,c2); 
+}  
+else  
+ 	System.out.println("Matrix mismatch"); 
+} 
+s.close(); 
+} 
+} 
