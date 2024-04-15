@@ -1,0 +1,205 @@
+// JDBC Program
+Table Creation: 
+create table employee_db 
+( eid int, 
+ename varchar(20), salary int, bonus int, 
+role varchar(20)); 
+ 
+JDBC Program: 
+import java.sql.*; import java.util.Scanner; public class EmployeeDB 
+{ public void display(Statement stmt) 
+{ try  
+{  
+String q="select * from employee_db"; ResultSet r=stmt.executeQuery(q); int i=0; if(r.next()==false) 
+{ 
+System.out.println("The table is empty."); return; } do 
+{ 
+System.out.println("Row "+(++i)+" : "); 
+	System.out.println("EID 	: "+r.getString("EID")); 
+System.out.println("ENAME : "+r.getString("ENAME")); 
+System.out.println("SALARY : "+r.getString("SALARY")); 
+System.out.println("BONUS : "+r.getString("BONUS")); System.out.println("ROLE : "+r.getString("ROLE")); System.out.println(); 
+}while(r.next()); 
+} catch(Exception e) 
+{ 
+System.out.println(e); 
+} } public void add(Statement stmt,Scanner s) 
+{ try 
+{ 
+System.out.println("Enter EID : "); int eid=s.nextInt(); s.nextLine(); 
+System.out.println("Enter ENAME : "); 
+String ename=s.nextLine(); 
+System.out.println("Enter SALARY : "); int salary=s.nextInt(); 
+s.nextLine(); 
+System.out.println("Enter BONUS% : "); int bonus=s.nextInt(); s.nextLine(); 
+System.out.println("Enter ROLE : "); 
+String role=s.nextLine(); 
+String q=String.format("insert into employee_db values(%d,'%s',%d, 
+%d,'%s')",eid,ename,salary,bonus,role); 
+int status=stmt.executeUpdate(q); if(status==1) 
+System.out.println("1 row created."); else  
+ 	System.out.println("Couldn't create the row!"); 
+} 
+catch(Exception e) 
+{ 
+System.out.println(e); 
+} } public void delete(Statement stmt,Scanner s) 
+{ try  
+{ 
+ 
+; 
+ 
+ 
+  
+; 	System.out.println("Enter the EID of the record to be deleted : ") 
+int eid=s.nextInt(); s.nextLine(); 
+String q=String.format("delete from employee_db where eid=%d",eid) 
+ 
+int status=stmt.executeUpdate(q); if(status==1) 
+System.out.println("1 row deleted."); 
+else  
+ 	System.out.println("Couldn't delete the row!"); 
+} 
+catch(Exception e) 
+{ 
+System.out.println(e); 
+} 
+} 
+public void update(Statement stmt,Scanner s) 
+{ try  
+{  
+String q; int status; 
+System.out.println("Select the column to be updated : "); 
+System.out.println("1. SALARY"); 
+System.out.println("2. BONUS"); 
+System.out.println("3. ROLE"); 
+System.out.println("Enter your choice : "); int ch=s.nextInt(); s.nextLine(); if(ch==1) 
+{ 
+System.out.println("SALARY UPDATE MENU"); 
+System.out.println("1. Increment salary for everyone"); 
+System.out.println("2. Update a new salary for an employee"); System.out.println("Enter your choice : "); int c=s.nextInt(); s.nextLine(); if(c==1) 
+{ 
+ 	System.out.println("Enter the increment amount : "); 
+ 	int incr=s.nextInt(); 
+ 
+ 	s.nextLine(); 
+ 	q=String.format("update employee_db set salary=salary+%d", incr); 	 
+status=stmt.executeUpdate(q); if(status==1) 
+System.out.println("1 row updated"); else if(status>1) 
+System.out.println(status+" rows updated."); else  
+ 	System.out.println("Couldn't update!"); 
+} 
+else if(c==2) 
+{ 
+ 	System.out.println("Enter the EID of the employee : "); 
+ 	int eid=s.nextInt(); 
+ 
+ 	s.nextLine(); 
+ 	System.out.println("Enter the new salary : ");  	int sal=s.nextInt();  	s.nextLine(); 
+ q=String.format("update employee_db set SALARY=%d where EI 
+D=%d",sal,eid);  
+status=stmt.executeUpdate(q); if(status!=0)  	System.out.println("1 row updated."); 
+else 
+ 	System.out.println("Couldn't update!"); 
+} 
+else 
+System.out.println("Invalid Command!"); 
+} 
+else if(ch==2) 
+{ 
+System.out.println("Enter the new bonus for all employees : ") ; 
+ 
+int b=s.nextInt(); s.nextLine(); q=String.format("update employee_db set bonus=%d",b); status=stmt.executeUpdate(q); 
+if(status==1) 
+System.out.println("1 row updated."); else if(status>1) 
+System.out.println(status+" rows updated."); else 
+System.out.println("Couldn't update!"); 
+} 
+else if(ch==3) 
+{ 
+ 	 System.out.println("Enter the EID of the employee : ");  	 int eid=s.nextInt(); 
+ 	 
+ 	 s.nextLine(); 
+ 	 System.out.println("Enter the new ROLE : ");  	 String role=s.nextLine(); 
+ 	 q=String.format("update employee_db set role='%s' where eid=%d 
+",role,eid); 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	 
+ 	} 	 
+status=stmt.executeUpdate(q); if(status!=0) 
+System.out.println(status+" row updated"); else 
+System.out.println("Couldn't update!");  
+ 
+ 
+ 
+else  
+ 
+ 	System.out.println("Invalid Command!"); 
+} 
+catch(Exception e) 
+{ 
+System.out.println(e); 
+} } public void count(Statement stmt) 
+{ try 
+{ 
+String q="select count(*) from employee_db"; ResultSet r=stmt.executeQuery(q); r.next(); 
+System.out.println("No. of employee in the database : "+r.getStrin 
+g("COUNT(*)")); } catch(Exception e) 
+{ 
+System.out.println(e); 
+} } public void pay(Statement stmt,Scanner s) 
+{ try  
+{  
+System.out.println("Enter the EID of the employee : "); int eid=s.nextInt(); s.nextLine(); 
+String q=String.format("select salary,bonus from employee_db where 
+eid=%d",eid); 
+ResultSet r=stmt.executeQuery(q); r.next(); int sal=r.getInt("SALARY"); int bon=r.getInt("BONUS"); double pay=(1+(bon/100.0))*sal; 
+System.out.println("Employee's pay : "+pay); 
+} catch(Exception e) 
+{ 
+System.out.println(e); 
+} } 
+public static void main(String[] args) 
+{ 
+Scanner s=new Scanner(System.in); try 
+{ 
+Class.forName("com.mysql.cj.jdbc.Driver"); 
+Connection con=DriverManager.getConnection("jdbc:mysql://localhost 
+:3306/db","root","root"); char c; do 
+{ 
+System.out.println("Select the operation : "); 
+System.out.println("SQL MENU"); 
+System.out.println("1. Display records"); 
+System.out.println("2. Add record"); 
+System.out.println("3. Delete record"); 
+System.out.println("4. Update record"); 
+System.out.println("5. Count employees"); 
+System.out.println("6. Calculate pay"); System.out.println("Enter your choice : "); int ch=s.nextInt(); 
+s.nextLine(); 
+EmployeeDB e=new EmployeeDB(); Statement stmt=con.createStatement(); switch(ch) 
+{ case 1: e.display(stmt); break; 
+case 2: e.add(stmt,s); break; 
+case 3: e.delete(stmt,s); break; 
+case 4: e.update(stmt,s); break; 
+case 5: e.count(stmt); break; 
+case 6: e.pay(stmt,s); break; 
+default:System.out.println("Invalid Command!"); 
+} 
+System.out.println("Would you like to continue?(y/n) : "); c=s.nextLine().charAt(0); }while(c=='y'||c=='Y'); con.close(); 
+} catch(Exception e) 
+{ 
+System.out.println(e); 
+} 
+s.close(); 
+} 
+} 
