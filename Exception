@@ -1,0 +1,33 @@
+//Exception
+import java.util.Scanner; public class park 
+{ public static void main(String[] args) 
+{ 
+Scanner s=new Scanner(System.in); try 
+{ 
+ 	System.out.println("Enter the name of the Park : "); 
+ 	String pname=s.nextLine(); 
+ 
+ System.out.println("Enter the daily revenue : ");  int rev=s.nextInt(); 
+ 	System.out.println("Enter the approx. no of customers per day : ") 
+; 	 
+ 	int n=s.nextInt();  	s.nextLine(); 
+ 
+ 	System.out.println("Length of Park name : "+pname.length()); 
+ 	System.out.println("Is the park a Zoo : "+pname.contains("Zoo")); 
+ System.out.println("The 20th character in Park's name : "+pname.ch arAt(19));  
+System.out.println("The 10 characters of Park's name : "+pname.sub 
+string(0,10)); 
+System.out.println("Avg. revenue per person : "+(rev/n)); 
+} catch(ArithmeticException a) 
+{ 
+System.out.println(a); 
+} catch(NullPointerException n) 
+{ 
+System.out.println(n); 
+} catch(StringIndexOutOfBoundsException st) 
+{ 
+System.out.println(st); 
+} 
+s.close(); 
+} 
+} 
