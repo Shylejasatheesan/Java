@@ -1,0 +1,46 @@
+package ComplexNumbers; public class ComplexNumbers 
+{ private int real,image; public ComplexNumbers() 
+{ } 
+public ComplexNumbers(int real,int image) 
+{ this.real=real; this.image=image; 
+} public static ComplexNumbers add(ComplexNumbers a,ComplexNumbers b) 
+{ 
+ComplexNumbers sum=new ComplexNumbers(); sum.real=a.real+b.real; sum.image=a.image+b.image; return sum; 
+} public static ComplexNumbers sub(ComplexNumbers a,ComplexNumbers b) { 
+ComplexNumbers diff=new ComplexNumbers(); diff.real=a.real-b.real; diff.image=a.image-b.image; return diff; 
+} public String toString() 
+{ if(this.image<0) return String.format("(%d - %di)",this.real,Math.abs(this.image)); 
+else return String.format("(%d + %di)",this.real,this.image); } } 
+ 
+Implementation: 
+ 
+import java.util.Scanner; import ComplexNumbers.ComplexNumbers; public class comp_nos 
+{ public static void main(String args[]) 
+{ 
+Scanner s=new Scanner(System.in); char c; do 
+{ 
+ 	System.out.println("Enter the first complex no. : "); 
+ 
+System.out.println("Enter the real part : "); 
+ 
+ 	int real1=s.nextInt(); 
+ System.out.println("Enter the imaginary part : ");  int image1=s.nextInt(); 
+ 	ComplexNumbers op1=new ComplexNumbers(real1,image1); 
+ 
+System.out.println("Enter the second complex no. : "); 
+ 
+ 	System.out.println("Enter the real part : "); 
+ 	int real2=s.nextInt(); 
+ 	System.out.println("Enter the imaginary part : "); 
+ 	int image2=s.nextInt(); 
+ 
+ 	ComplexNumbers op2=new ComplexNumbers(real2,image2); 
+ 	System.out.println("What is the operation? (1. Add, 2.Subtraction) 
+: ");  
+int ch=s.nextInt(); s.nextLine(); switch (ch) 
+{ case 1: ComplexNumbers sum=ComplexNumbers.add(op1,op2); System.out.println(op1+" + "+op2+" = "+sum); break; 
+  case 2: ComplexNumbers diff=ComplexNumbers.sub(op1,op2); System.out.println(op1+" - "+op2+" = "+diff); break; 
+default:System.out.println("Invalid Command!"); } 
+System.out.println("Would you like to continue(y/n) : "); c=s.nextLine().charAt(0); }while(c=='y'||c=='Y'); s.close(); 
+} 
+} 
