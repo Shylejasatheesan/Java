@@ -1,0 +1,30 @@
+//vowelConsonant
+import java.util.Scanner;
+public class vowelConsonant 
+{ 
+static boolean isVowel(char c) 
+{ char t=Character.toLowerCase(c); 
+if(t=='a'||t=='e'||t=='i'||t=='o'||t=='u') 
+return true; 
+else 
+return false; 
+} 
+public static void main(String args[]) 
+{ 
+Scanner s=new Scanner(System.in); 
+System.out.println("Enter a string :"); 
+String str=s.nextLine();
+int vc=0,cc=0;
+for(int i=0;i<str.length();i++) 
+{ 
+if(Character.isLetter(str.charAt(i))) 
+{ 
+if(isVowel(str.charAt(i))) vc++; 
+else cc++; 
+} 
+} 
+System.out.println("No. of vowels in string : "+vc); 
+System.out.println("No. of consonants in string : "+cc); 
+s.close(); 
+} 
+} 
