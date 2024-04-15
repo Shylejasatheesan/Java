@@ -1,0 +1,24 @@
+//stringCharoccurence 
+import java.util.Scanner; 
+public class stringCharOccurence 
+{
+public static void main(String args[]) { 
+ Scanner s=new Scanner(System.in); 
+System.out.println("Enter the string :"); 
+String str=s.nextLine(); 
+System.out.println("Enter the character whose occurence is to be found :");  
+String c=s.nextLine();
+if(str.contains(c)) 
+{ 
+int count=0; for(int i=str.indexOf(c);
+i<str.length();i++) 
+{ 
+if(str.charAt(i)==c.charAt(0)) count++; 
+} 
+System.out.println("The character '"+c+"' occurs in the string "+count+" times"); 
+} 
+else 
+System.out.println("The string doesn't contain character '"+c+"'"); 
+s.close(); 
+} 
+} 
