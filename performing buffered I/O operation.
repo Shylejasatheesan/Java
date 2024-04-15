@@ -1,0 +1,31 @@
+//performing buffered I/O operation. 
+import java.io.*;
+import java.util.Scanner; 
+public class buff_io 
+{ public static void main(String[] args) 
+{ 
+BufferedOutputStream bout; 
+BufferedInputStream bin; 
+Scanner s=new Scanner(System.in); try 
+{ 
+System.out.println("Enter the name of the file : "); 
+String fname=s.nextLine(); 
+FileOutputStream fout=new FileOutputStream(fname); 
+bout=new BufferedOutputStream(fout); 
+System.out.println("Enter the file contents : "); 
+String cont=s.nextLine(); bout.write(cont.getBytes());
+bout.close(); fout.close(); 
+FileInputStream fin=new FileInputStream(fname); 
+bin=new BufferedInputStream(fin); 
+System.out.println("The file contents : "); 
+byte[] out=new byte[100]; bin.read(out); 
+String data=new String(out); 
+System.out.println(data);
+bin.close(); 
+fin.close(); 
+} catch(IOException e) 
+{ 
+System.out.println(e); 
+} 
+s.close(); 
+} } 
