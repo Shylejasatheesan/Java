@@ -1,0 +1,57 @@
+//interface interest 
+import java.util.Scanner; 
+interface interest 
+{ 
+public double simpleinterest(); 
+public double compoundinterest(); 
+double rate=25; 
+} 
+public class loan implements interest 
+{ 
+private double p; 
+private int t,n; 
+loan(double p,int t) 
+{ this.p=p; this.t=t; 
+} 
+loan(double p,int t,int n) 
+{ this.p=p; this.t=t; this.n=n; 
+} 
+public double simpleinterest() 
+{ return p*rate*t/100; 
+} public double compoundinterest() 
+{ double r=rate/100.0; 
+return p*(Math.pow((1+(r/n)),(n*t)))-p; } 
+public static void main(String args[]) 
+{ 
+Scanner s=new Scanner(System.in);
+char c='y'; while(c=='y'||c=='Y') 
+{ 
+System.out.println("Interest Menu"); 
+System.out.println("1. Simple Interest"); 
+System.out.println("2. Compound Interest"); 
+System.out.println("Enter your choice(1/2) : "); 
+int ch=s.nextInt(); if(ch==1||ch==2) 
+{ 
+System.out.println("Enter the principle amount : "); 
+double p=s.nextDouble(); 
+System.out.println("Enter the time period in years : "); 
+int t=s.nextInt(); s.nextLine(); if(ch==1) 
+{ 
+ 	 loan si=new loan(p,t); 
+ 	 System.out.printf("The simple interest is %.2f\n",si.simpleinterest());  	 
+ 	}  
+else  
+ 	{ 
+ System.out.println("Enter the no. of times interest applie d per year : "); 
+int n=s.nextInt(); 
+s.nextLine(); 
+loan ci=new loan(p,t,n); 
+System.out.printf("The compound interest is %.2f\n",ci.com poundinterest()); 
+} } else 
+System.out.println("Invalid command!"); 
+System.out.println("Would you like to continue(y/n) : ");
+c=s.nextLine().charAt(0); 
+} 
+s.close(); 
+} 
+}
