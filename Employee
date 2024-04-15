@@ -1,0 +1,78 @@
+//Employee
+import java.util.Scanner; 
+class Employee 
+{ protected String name; protected int age; protected double salary; 
+Employee(String name,int age,double salary) 
+{ this.name=name; this.age=age; this.salary=salary; 
+} 
+public void printEmp() 
+{ 
+System.out.println("\nEmployee Details : "); 
+System.out.println("Name of the employee : "+this.name); 
+System.out.println("Age of the employee 	: "+this.age); System.out.println("Salary of the employee : "+this.salary); } } class Programmer extends Employee 
+{ final static String role="Programmer"; private String lang; 
+Programmer(String name,int age,double salary,String lang) 
+{ super(name,age,salary); this.lang=lang; 
+} 
+public void printProg() 
+{ 
+super.printEmp(); 	
+System.out.println("Role of the employee 	: "+Programmer.role); 
+System.out.println("Working Language 	: "+this.lang); 
+} 
+} 
+ 
+ 
+ 
+class DatabasePro extends Employee 
+{ final static String role="Database Professional"; 
+private String dbms; 
+DatabasePro(String name,int age,double salary,String dbms) 
+{ super(name,age,salary);
+this.dbms=dbms; 
+} 
+public void printDataPro() 
+{ 
+super.printEmp(); 	
+System.out.println("Role of the employee 	: "+DatabasePro.role); 
+System.out.println("Working DBMS 	: "+this.dbms); 
+} } public class class1 
+{ public static void main(String[] agrs) 
+{ 
+Scanner s=new Scanner(System.in); 
+char c; 
+do 
+{ 
+System.out.println("1. Programmer"); 
+System.out.println("2. Database Professional"); 
+System.out.println("Choose the role of the employee whose data has to be entered : "); 
+int ch=s.nextInt(); 
+s.nextLine(); if(ch==1||ch==2) 
+{ 
+System.out.println("Enter name of the employee : "); 
+String name=s.nextLine(); 
+System.out.println("Enter age of the employee : ");
+int age=s.nextInt(); 
+System.out.println("Enter salary of the employee : "); 
+		double salary=s.nextDouble(); 
+s.nextLine(); if(ch==1) 
+{ 
+ 
+"); 
+ 	 	System.out.println("Enter language the employee works on : String lang=s.nextLine(); 
+Programmer p=new Programmer(name,age,salary,lang); p.printProg(); 
+} 
+);
+ 	} 	else  
+{ 
+ System.out.println("Enter DBMS the employee works with : " 
+ 
+ 
+ String dbms=s.nextLine(); 
+ DatabasePro d=new DatabasePro(name,age,salary,dbms);  d.printDataPro(); 
+} 
+	else 
+System.out.println("Invalid Command!"); 
+System.out.println("\n\nWould you like to continue(y/n) : "); c=s.nextLine().charAt(0); }while(c=='y'||c=='Y'); s.close(); 
+} 
+} 
