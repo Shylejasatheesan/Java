@@ -1,0 +1,28 @@
+import java.util.Scanner; 
+public class stringSub 
+{ 
+public static void main(String args[]) 
+{ 
+Scanner s=new Scanner(System.in); 
+System.out.println("Enter a string :"); 
+String str=s.nextLine(); 
+System.out.println("Enter the start index of sub-string :"); 
+int b=s.nextInt(); 
+System.out.println("Enter the end index of sub-string(-1 if no end) :"); 
+int e=s.nextInt(); 
+String sub; 
+if(b>=str.length()||b<0||e>=str.length()) 
+System.out.println("Index out of range."); 
+else if(e==-1) 
+{ 
+sub=str.substring(b); 
+System.out.println("The required substring is :"); 
+System.out.println(sub); 
+} else 
+{ sub=str.substring(b,e); 
+System.out.println("The required substring is :"); 
+System.out.println(sub); 
+} 
+s.close(); 
+} 
+} 
