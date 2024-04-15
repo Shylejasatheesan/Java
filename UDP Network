@@ -1,0 +1,43 @@
+
+import java.net.*; public class dataReceiver { public static void main(String[] args) { try 
+{ 
+DatagramSocket ds=new DatagramSocket(3003); 
+DatagramPacket dp; String msg; while(true) 
+{ byte[] receive= new byte[65535]; dp=new DatagramPacket(receive, receive.length); ds.receive(dp); msg= new String(dp.getData(), 0, dp.getLength()); if(msg.equals("quit")) 
+{ 
+System.out.println("Session Terinated"); break; 
+} 
+System.out.println("New message received : "); 
+System.out.println(msg); 
+receive=null; 
+} 
+ds.close(); 
+} catch (Exception e) 
+{ 
+System.out.println(e); 
+} 
+} 
+} 
+ 
+b) Client: 
+ 
+import java.net.*; import java.util.Scanner; public class dataTransmitter { public static void main(String[] args) { try 
+{ 
+ 	Scanner s=new Scanner(System.in);  	DatagramSocket ds=new DatagramSocket(); 
+ 
+ InetAddress ip=InetAddress.getLocalHost();  byte buf[]=null; 
+ System.out.println("Enter your messages, type 'quit' to end the se ssion : ");  while(true) 
+{ 
+String msg=s.nextLine(); buf=msg.getBytes(); 
+DatagramPacket dp=new DatagramPacket(buf,buf.length,ip,3003); ds.send(dp); 
+if(msg.equals("quit")) 
+{ 
+System.out.println("Session Terminated"); break; 
+} } 
+s.close(); ds.close(); 
+} catch (Exception e) 
+{ 
+System.out.println(e); 
+} 
+} 
+} 
