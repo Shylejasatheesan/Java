@@ -1,0 +1,46 @@
+// studentdata
+import java.util.Scanner;
+public class Students 
+{ private int roll,nos,tot; private String name; 
+private int[] marks; 
+Students(int roll,String name,int nos,int[] marks) 
+{ this.roll=roll; this.name=name;
+this.nos=nos;
+this.marks=new int[nos]; tot=0; 
+for(int i=0;i<nos;i++) 
+{ this.marks[i]=marks[i]; tot+=marks[i]; 
+} } public void display() 
+{ 
+System.out.println("Roll : "+roll); 
+System.out.println("Name : "+name); 
+System.out.println("No. of subs : "+nos); 
+System.out.println("Marks :"); 
+for(int i=0;i<nos;i++) 
+System.out.print(marks[i]+" "); 
+System.out.println(); 
+System.out.printf("Percent : %.2f\n",(tot*1.0)/nos); 
+System.out.println("Class : "+getclass()); 
+} private String getclass() 
+{ double a=(tot*1.0)/nos; if(a>90) return "Distinction"; 
+else if(a>70) return "I Class"; 
+else if(a>=50) return "II Class"; 
+else return "Fail"; 
+ 
+} public static void main(String args[]) 
+{ 
+Scanner s=new Scanner(System.in);
+System.out.println("Enter roll no. :"); 
+int roll=s.nextInt(); s.nextLine(); 
+System.out.println("Enter name :"); 
+String name=s.nextLine(); 
+System.out.println("Enter the no. of subjects : "); 
+int nos=s.nextInt(); 
+int[] marks=new int[nos]; 
+System.out.println("Enter the marks :"); 
+for(int i=0;i<nos;i++) marks[i]=s.nextInt(); 
+Students st=new Students(roll,name,nos,marks);
+st.display(); 
+s.close(); 
+} 
+} 
+ 
