@@ -1,0 +1,18 @@
+import java.util.Scanner;  public class register 
+{ 
+public static void main(String[] args) 
+{ 
+Scanner s=new Scanner(System.in);  char c; do {   try 
+{ 
+System.out.println("Enter the age : ");  int age=s.nextInt();  
+System.out.println("Enter the weight : ");  int wei=s.nextInt(); if(age<12 && wei<40)  
+System.out.println("Registration success!"); 
+Else throw new ArithmeticException("Student is not eligible for registration"); } 
+ 
+ catch(ArithmeticException a) 
+{ 
+System.out.println(a); System.out.println("Registration denied!"); 
+} 
+System.out.println("Would you like to continue?(y/n) : "); c=s.nextLine().charAt(0); }while(c=='y'||c=='Y'); s.close(); 
+} 
+} 
