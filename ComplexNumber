@@ -1,0 +1,52 @@
+//ComplexNumber
+import java.util.Scanner;
+public class Complex 
+{ 
+private int real,image; 
+Complex(int real,int image) 
+{ 
+this.real=real; this.image=image; 
+} 
+public void display() 
+{ 
+System.out.print(real+"+"+image+"i"); 
+} 
+public void add(Complex c) 
+{ 
+System.out.println((real+c.real)+"+"+(image+c.image)+"i"); 
+} 
+public void sub(Complex c) 
+{ 
+System.out.println((real-c.real)+"+("+(image-c.image)+")i"); 
+} 
+public void mult(Complex c) 
+{
+int t1=real*c.real;
+int t2=image*c.image; 
+System.out.println((t1-t2)+"+"+(t1+t2)+"i"); 
+} 
+public static void main(String args[]) 
+{ 
+Scanner s=new Scanner(System.in); 
+System.out.println("Complex no. 1 :"); 
+System.out.println("Enter the real part :"); 
+int real1=s.nextInt(); 
+System.out.println("Enter the imaginary part :");
+int image1=s.nextInt(); 
+Complex c1=new Complex(real1,image1); 
+System.out.println("Complex no. 2 :"); 
+System.out.println("Enter the real part :"); 
+int real2=s.nextInt(); 
+System.out.println("Enter the imaginary part :"); 
+int image2=s.nextInt(); 
+Complex c2=new Complex(real2,image2); 
+System.out.println("Addition(c1+c2) :");
+c1.add(c2); 
+System.out.println("Subtraction(c1-c2) :"); 
+c1.sub(c2); 
+System.out.println("Multiplication(c1*c2) :"); 
+c1.mult(c2); 
+s.close(); 
+} 
+} 
+ 
