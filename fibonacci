@@ -1,0 +1,19 @@
+// fibonacci 
+import java.util.Scanner;
+public class fibonacci 
+{
+public static void main(String args[]) 
+{ 
+Scanner s=new Scanner(System.in); 
+System.out.println("Enter the position of elt in fib. series :");
+int n=s.nextInt(); if(n==1) 
+System.out.println("1st elt is 0"); else if(n==2) 
+System.out.println("2nd elt is 1"); else 
+{ int f=0,sec=1,t=0,i=3; while(i<=n) 
+{ t=f+sec; f=sec; sec=t; i++; 
+} 
+System.out.println(n+"th elt is "+t); 
+} 
+s.close(); 
+} 
+} 
