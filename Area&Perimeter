@@ -1,0 +1,52 @@
+//Area&Perimeter
+import java.util.Scanner; interface aandp 
+{ public double area(); public double perimeter(); 
+} class square implements aandp 
+{ private double side; square(double side) 
+{ this.side=side; 
+} public double area() 
+{ return Math.pow(side,2.0); 
+} 
+public double perimeter() 
+{ return 4*side; 
+} } 
+class circle implements aandp 
+{ private double radius; circle(double radius) 
+{ this.radius=radius; 
+} public double area() 
+{ return 3.14*Math.pow(radius,2.0); 
+} public double perimeter() 
+{ return 2*3.14*radius; 
+} } public class measure 
+{ public static void main(String args[]) 
+{ 
+Scanner s=new Scanner(System.in); char c='y'; while(c=='y'||c=='Y') 
+{ 
+System.out.println("Measurement Menu"); 
+System.out.println("1. Square"); 
+System.out.println("2. Circle"); 
+System.out.println("Enter the shape of your choice(1/2) : "); int ch=s.nextInt(); if(ch==1) 
+{ 
+ 	System.out.println("Enter the side of square : ");  	double side=s.nextDouble(); 
+ 
+ 	square sq=new square(side); 
+ 	System.out.printf("The area of the sqaure is %.2f\n",sq.area() 
+); 
+ System.out.printf("The perimeter of the square is %.2f\n",sq.p erimeter()); } 
+else if(ch==2) 
+{ 
+ 	System.out.println("Enter the radius of circle : ");  	double radius=s.nextDouble(); 
+ 
+ 	circle ci=new circle(radius); 
+ 	System.out.printf("The area of the circle is %.2f\n",ci.area() 
+); 
+ System.out.printf("The circumference of the circle is %.2f\n", ci.perimeter()); 
+}  
+else  
+System.out.println("Invalid command!"); 
+s.nextLine(); 
+System.out.println("Would you like to continue(y/n) : "); c=s.nextLine().charAt(0); 
+} 
+s.close(); 
+} 
+} 
