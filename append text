@@ -1,0 +1,42 @@
+//append text 
+import java.io.*; 
+import java.util.Scanner;
+public class append_file 
+{ public static void main(String[] args) 
+{ 
+Scanner s=new Scanner(System.in); 
+FileOutputStream fout; 
+FileInputStream fin; 
+byte[] out=new byte[100]; 
+String data; try 
+{ 
+System.out.println("Enter the file to appended : ");
+String fname=s.nextLine();
+fout=new FileOutputStream(fname,true); 
+fin=new FileInputStream(fname); 
+{
+ 	 
+ 	} 	fin.read(out); fin.skip(-off);
+data=new String(out); 
+System.out.println("File contents before append : "); 
+System.out.println(data); 
+ 
+System.out.println("Enter the contents to be appended : "); 
+String cont=s.nextLine();
+int off=fin.available();
+if(off>0)
+ 	else  
+ 	System.out.println("File doesn't exist, a new file will be cre ated."); 
+fout.write(cont.getBytes()); 
+fin.read(out);
+data=new String(out); 
+System.out.println("File contents after append : "); 
+System.out.println(data); 
+fout.close(); fin.close(); 
+} catch(IOException e) 
+{ 
+System.out.println(e); 
+} 
+s.close(); 
+} 
+} 
