@@ -1,0 +1,23 @@
+//AgeLessThanException
+import java.util.Scanner; 
+class AgeLessThanException extends Exception 
+{ public String toString() 
+{ return "Age has to be greater than or equal to 18 for access"; 
+} } public class entry 
+{ public static void main(String[] args) 
+{ 
+Scanner s=new Scanner(System.in); while(true) 
+{ try  
+{  
+System.out.println("Enter the age : "); int age=s.nextInt(); if(age<18) 
+{ throw new AgeLessThanException(); 
+} else 
+{ 
+System.out.println("Access granted!"); break; 
+} 
+} catch(AgeLessThanException e) { 
+System.out.println(e); continue; 
+} } 
+s.close(); 
+} 
+} 
