@@ -1,0 +1,54 @@
+//Networking
+1 Server: 
+ 
+import java.io.*; import java.net.*; public class commsServer 
+{ public static void main(String[] args) 
+{ try  
+{  
+ServerSocket ss=new ServerSocket(3002); 
+Socket s=ss.accept(); 
+DataOutputStream dout=new DataOutputStream(s.getOutputStream()); 
+DataInputStream din=new DataInputStream(s.getInputStream()); String msg1="Enter your name : "; dout.writeUTF(msg1); 
+System.out.println("Message Sent : "+msg1); 
+String name=din.readUTF(); 
+String msg2="Hello "+name+", Enter your age : "; dout.writeUTF(msg2); 
+System.out.println("Message Sent : "+msg2); int age=din.readInt(); 
+String msg3; if(age>=18) msg3="Access Granted!"; 
+else msg3="Access Denied! Underage!"; 
+dout.writeUTF(msg3); 
+System.out.println("Message Sent : "+msg3); dout.close(); din.close(); 
+s.close(); ss.close(); 
+} catch(Exception e) 
+{ 
+System.out.println(e); 
+} 
+} 
+} 
+ 
+2 Client: 
+ 
+import java.io.*; import java.net.*; import java.util.Scanner; public class commsClient 
+{ public static void main(String[] args) 
+{ try  
+{  
+ 	Socket s=new Socket("localhost",3002); 
+ 	Scanner sc=new Scanner(System.in); 
+ 
+ 	DataInputStream din=new DataInputStream(s.getInputStream()); 
+ 	DataOutputStream dout=new DataOutputStream(s.getOutputStream()); 
+ 	System.out.println(din.readUTF()); 
+ 	String name=sc.nextLine(); 
+ dout.writeUTF(name); 
+ 
+ 	System.out.println(din.readUTF());  	int age=sc.nextInt();  	dout.writeInt(age); 
+ 	System.out.println(din.readUTF()); 
+ 
+ 	din.close();  	dout.close();  	s.close();  	sc.close(); 
+} 
+catch(Exception e) 
+{ 
+System.out.println(e); 
+} 
+} 
+} 
+ 
