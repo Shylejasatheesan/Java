@@ -1,0 +1,31 @@
+//Constructor
+public class Triangle 
+{ 
+private int s1,s2,s3; 
+Triangle() 
+{ s1=3; s2=4; s3=5; 
+} 
+public int perimeter() 
+{ 
+return s1+s2+s3; 
+} 
+public double area() 
+{ 
+double s=(s1+s2+s3)/2.0; 
+return Math.sqrt(s*(s-s1)*(s-s2)*(s-s3)); 
+} 
+public void sides() 
+{ 
+System.out.print(s1+" "+s2+" "+s3); 
+}
+public static void main(String args[]) 
+{ 
+Triangle t=new Triangle(); 
+System.out.print("Perimeter of triangle with sides ");
+t.sides(); 
+System.out.println(" is "+t.perimeter()); 
+System.out.print("Perimeter of triangle with sides "); 
+t.sides(); 
+System.out.printf(" is %.2f\n",t.area()); } 
+} 
+ 
